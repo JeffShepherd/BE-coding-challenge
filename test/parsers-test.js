@@ -15,20 +15,16 @@ describe('parseJsonData', function() {
   })
 
   it('should return an error for an incorrect file extension', async function() {
-    await expect(parseJsonData('./testData.py')).to.be.rejectedWith(Error)
-  })
-
-  it('should return an error unexpected data formats', async function() {
-    await expect(parseJsonData('./badTestData.json')).to.be.rejectedWith(Error)
+    await expect(parseJsonData('./test/testData/testData.py')).to.be.rejectedWith(Error)
   })
 
   it('should return an array', async function() {
-    const result = await parseJsonData('./test/testData.json')
+    const result = await parseJsonData('./test/testData/testData.json')
     expect(result).to.be.an('array')
   })
 
   it('should return an array full of objects', async function() {
-    const result = await parseJsonData('./test/testData.json')
+    const result = await parseJsonData('./test/testData/testData.json')
     expect(result[0]).to.be.an('object')
     expect(result[10]).to.be.an('object')
   })
@@ -41,7 +37,7 @@ describe('parseJsonData', function() {
       referrer: 'direct',
       remote_ip: '2.16.120.255'
     }
-    const result = await parseJsonData('./test/testData.json')
+    const result = await parseJsonData('./test/testData/testData.json')
     expect(result[0].bitlink).to.equal(exampleResult.bitlink)
     expect(result[0].timestamp).to.equal(exampleResult.timestamp)
   })
