@@ -13,7 +13,7 @@ export async function processClickCounts(csvFilePath, jsonFilePath) {
   const finalCount = formatResult(updatedClickCounts)
   const sortedFinalCount = sortFinalCount(finalCount)
 
-
+  console.log(JSON.stringify(sortedFinalCount))
 }
 
 
