@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "chai-as-promised": "^7.1.1",
+    "fs": "^0.0.1-security"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  }
+}
