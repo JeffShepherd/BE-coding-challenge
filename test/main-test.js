@@ -1,7 +1,7 @@
 import chai from 'chai';
 import { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { processClickCounts, countValidClicks, formatResult } from '../src/main.js'
+import { processClickCounts, countValidClicks, formatResult, sortFinalCount } from '../src/main.js'
 import parseJsonData from '../src/parsers/jsonParser.js'
 import parseCsvData from '../src/parsers/csvParser.js'
 chai.use(chaiAsPromised)
@@ -11,6 +11,7 @@ const shortLinks = Object.keys(initialClickCounts)
 const clickData = await parseJsonData('./test/testData/testData.json')
 const updatedClickCounts = countValidClicks(initialClickCounts, shortLinks, clickData)
 const finalCount = formatResult(updatedClickCounts)
+const sortedFinalCount = sortFinalCount(finalCount)
 
 describe('processClickCounts', function() {
   it('should be a function', async function() {
@@ -46,7 +47,7 @@ describe('formatResult', async function() {
     await expect(formatResult).to.be.a('function')
   })
 
-  it('should return an object', async function() {
+  it('should return an array', async function() {
     expect(finalCount).to.be.an('array')
   })
 
@@ -58,5 +59,26 @@ describe('formatResult', async function() {
       { 'https://reddddit.com/': 1 }
     ]
     expect(finalCount).to.deep.equal(expected)
+  })
+})
+
+
+describe('sortFinalCount', async function() {
+  it('should be a function', async function() {
+    await expect(sortFinalCount).to.be.a('function')
+  })
+
+  it('should return an array', async function() {
+    expect(sortedFinalCount).to.be.an('array')
+  })
+
+  it('should return the correct sorted result', async function() {
+    const expected = [
+      { 'https://ter.com/': 4 },
+      { 'https://google.com/': 2 },
+      { 'https://gb.com/': 2 },
+      { 'https://reddddit.com/': 1 }
+    ]
+    expect(sortedFinalCount).to.deep.equal(expected)
   })
 })
