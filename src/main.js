@@ -11,6 +11,8 @@ export async function processClickCounts(csvFilePath, jsonFilePath) {
   
   const updatedClickCounts = countValidClicks(initialClickCounts, shortLinks, clickData)
   const finalCount = formatResult(updatedClickCounts)
+  const sortedFinalCount = sortFinalCount(finalCount)
+
 
 }
 
@@ -35,4 +37,8 @@ export function formatResult(updatedClickCounts) {
     return {[long_url]: count}
   })
   return result
+}
+
+export function sortFinalCount(finalCount) {
+  return [...finalCount].sort((a,b) => Object.values(b)[0] - Object.values(a)[0])
 }
