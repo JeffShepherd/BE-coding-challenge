@@ -9,9 +9,9 @@ export async function processClickCounts(csvFilePath, jsonFilePath) {
   const shortLinks = Object.keys(initialClickCounts)
   const clickData = await parseJsonData(jsonFilePath)
   
-
   const updatedClickCounts = countValidClicks(initialClickCounts, shortLinks, clickData)
-  
+  const finalCount = formatResult(updatedClickCounts)
+
 }
 
 
@@ -27,4 +27,12 @@ export function countValidClicks(clickCounts, shortLinks, clickData) {
     }
   }
   return clickCounts
+}
+
+export function formatResult(updatedClickCounts) {
+  const result = Object.keys(updatedClickCounts).map(link => {
+    let {long_url, count} = updatedClickCounts[link]
+    return {[long_url]: count}
+  })
+  return result
 }
