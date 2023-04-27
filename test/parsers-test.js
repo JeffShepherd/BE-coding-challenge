@@ -1,11 +1,49 @@
 import chai from 'chai';
 import { expect } from 'chai';
 import parseJsonData from '../src/parsers/jsonParser.js'
+import parseCsvData from '../src/parsers/csvParser.js'
 import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised)
 
-describe('parseJsonData', function() {
 
+describe('parseCsvData', function() {
+  it('should be a function', async function() {
+    await expect(parseCsvData).to.be.a('function')
+  })
+
+  it('should return a promise', function() {
+    expect(parseCsvData('./test/testData/testData.csv')).to.be.an.instanceOf(Promise)
+  })
+
+  it('should return an error for an incorrect file path', async function() {
+    await expect(parseCsvData('./test/test/test.csv')).to.be.rejectedWith(Error)
+  })
+
+  it('should return an error for an incorrect file extension', async function() {
+    await expect(parseCsvData('./test/testData/testData.py')).to.be.rejectedWith(Error)
+  })
+
+  it('should return an object', async function() {
+    const result = await parseCsvData('./test/testData/testData.csv')
+    expect(result).to.be.an('object')
+  })
+
+  it('should return a promise that resolves with the correct result', async function() {
+    const expected =
+      {
+        'bit.ly/31Tt55z': { long_url: 'https://google.com/', count: 0 },
+        'bit.ly/2kJO0zS': { long_url: 'https://gb.com/', count: 0 },
+        'bit.ly/2zkAHNs': { long_url: 'https://ter.com/', count: 0 },
+        'bit.ly/2k3dsg8': { long_url: 'https://reddddit.com/', count: 0 }
+      }
+    const result = await parseCsvData('./test/testData/testData.csv')
+    expect(result).to.deep.equal(expected)
+  })
+
+})
+
+
+describe('parseJsonData', function() {
   it('should be a function', async function() {
     await expect(parseJsonData).to.be.a('function')
   })
