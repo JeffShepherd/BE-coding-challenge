@@ -23,12 +23,10 @@ export async function processClickCounts(csvFilePath, jsonFilePath) {
 
 ////
 export function countValidClicks(clickCounts, shortLinks, clickData) {
-  for(let i=0; i<clickData.length; i++) {
-    const domainWithHash = clickData[i].bitlink.split('//')[1]
+  for(const data of clickData) {
+    const domainWithHash = data.bitlink.split('//')[1]
 
-    if(!shortLinks.includes(domainWithHash)) {
-      continue
-    } else if(clickData[i].timestamp.startsWith('2021')) {
+    if(shortLinks.includes(domainWithHash) && data.timestamp.startsWith('2021')) {
       clickCounts[domainWithHash].count ++
     }
   }
