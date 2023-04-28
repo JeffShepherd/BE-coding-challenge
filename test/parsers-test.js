@@ -69,7 +69,7 @@ describe('parseJsonData', function() {
 
   it('should parse the json data but not alter it', async function() {
     const exampleResult = {
-      bitlink: 'http://bit.ly/2kJdsg8',
+      bitlink: 'http://bit.ly/31Tt55z',
       user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36',
       timestamp: '2020-06-06T00:00:00Z',
       referrer: 'direct',
