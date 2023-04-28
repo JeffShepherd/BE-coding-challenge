@@ -1,6 +1,8 @@
 import fs from 'fs'
 import csv from 'csv-parser'
 
+////reads a csv file at the path provided and parses it into a predetermined
+//format, which it returns as a Promise
 function parseCsvData(path) {
   return new Promise((resolve, reject) => {
     if (!path.endsWith('.csv')) {

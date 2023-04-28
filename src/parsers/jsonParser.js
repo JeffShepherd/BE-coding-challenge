@@ -1,5 +1,6 @@
 import fs from 'fs'
 
+////reads a JSON file at the path provided and parses it, which it returns as a Promise
 const parseJsonData = (path) => {
   return new Promise((resolve, reject) => {
 
