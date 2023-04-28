@@ -1,8 +1,8 @@
-import chai from 'chai';
-import { expect } from 'chai';
+import chai from 'chai'
+import { expect } from 'chai'
 import parseJsonData from '../src/parsers/jsonParser.js'
 import parseCsvData from '../src/parsers/csvParser.js'
-import chaiAsPromised from 'chai-as-promised';
+import chaiAsPromised from 'chai-as-promised'
 chai.use(chaiAsPromised)
 
 
@@ -39,7 +39,6 @@ describe('parseCsvData', function() {
     const result = await parseCsvData('./test/testData/testData.csv')
     expect(result).to.deep.equal(expected)
   })
-
 })
 
 

@@ -1,6 +1,6 @@
-import chai from 'chai';
-import { expect } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
+import chai from 'chai'
+import { expect } from 'chai'
+import chaiAsPromised from 'chai-as-promised'
 import spies from 'chai-spies'
 import { processClickCounts, countValidClicks, formatResult, sortFinalCount } from '../src/main.js'
 import parseJsonData from '../src/parsers/jsonParser.js'
