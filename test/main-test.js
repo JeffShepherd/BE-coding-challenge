@@ -1,10 +1,12 @@
 import chai from 'chai';
 import { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
+import spies from 'chai-spies'
 import { processClickCounts, countValidClicks, formatResult, sortFinalCount } from '../src/main.js'
 import parseJsonData from '../src/parsers/jsonParser.js'
 import parseCsvData from '../src/parsers/csvParser.js'
 chai.use(chaiAsPromised)
+chai.use(spies)
 
 const initialClickCounts = await parseCsvData('./test/testData/testData.csv')
 const shortLinks = Object.keys(initialClickCounts)
@@ -18,6 +20,12 @@ describe('processClickCounts', function() {
     await expect(processClickCounts).to.be.a('function')
   })
 
+  it('should log the correct JSON to the console', async function() {
+    const spy = chai.spy.on(console, 'log')
+    await processClickCounts('./test/testData/testData.csv', './test/testData/testData.json')
+    const expected = JSON.stringify(sortedFinalCount)
+    chai.expect(spy).to.have.been.called.with(expected)
+  })
 })
 
 
