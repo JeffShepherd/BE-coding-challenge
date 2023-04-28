@@ -35,11 +35,8 @@ export function countValidClicks(clickCounts, shortLinks, clickData) {
 
 ////
 export function formatResult(updatedClickCounts) {
-  const result = Object.keys(updatedClickCounts).map(link => {
-    let {long_url, count} = updatedClickCounts[link]
-    return {[long_url]: count}
-  })
-  return result
+  return Object.values(updatedClickCounts)
+    .map(({ long_url, count }) => ({[long_url]: count }))
 }
 
 ////
